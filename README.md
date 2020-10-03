@@ -4,7 +4,7 @@
 - State (Input)  
   - Various information (angle, angular, orientation, sensor)   
 ```
-env.observation_space.shape[0]
+    config.state_dim = env.observation_space.shape[0]
 ```
 
 - Action (Output)  
@@ -12,8 +12,12 @@ env.observation_space.shape[0]
 ```
     if env.action_space.__class__ == gym.spaces.discrete.Discrete:
         config.action_type = 'Discrete'
+        config.action_dim = env.action_space.n
+        print('Discrete', config.state_dim, config.action_dim)
     else:
         config.action_type = 'Continuous'
+        config.action_dim = env.action_space.shape[0]
+        print('Continuous', config.state_dim, config.action_dim)
 ```
 
 ## Reinforcement Learning PPO
